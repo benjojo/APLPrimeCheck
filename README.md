@@ -147,3 +147,35 @@ So then we just call K. Then all of the code we have written above runs.
 
 It's worth noting that there isnt a exit issue, this is because `)OFF` (the command to exit) as not working in my tests, So I left it out since the rules didnt say it has to exit.
 
+### But wait you didnt explain the huge long function. Well now that you have asked...
+
+Before in this we simplyed the long line into a basic compenent:
+
+`((X[1]=+⌿E[7]=(⍳J)∘.|⍳J)/⍳J←I)`
+
+First we are going to remove the number fill ins, Like the ones I did last time.
+
+`((2=+⌿0=(⍳J)∘.|⍳J)/⍳J←I)`
+
+Now we have a zero and two in the mix.
+
+We know that `I` at the end means the number that the user had inputed.
+
+This function works by assuming that is number A is multipul of another number (B) then the remainder of A divided by B is zero.
+
+The function `|` gives us remainders.
+
+```
+   7|10
+3
+```
+
+We can do this on a array/vector of numbers. So a better way to explain this function is:
+
+```
+   3|1 2 3 4 5 6 7 8 9 10
+1 2 0 1 2 0 1 2 0 1
+```
+
+=== To be finished ===
+
