@@ -149,6 +149,8 @@ It's worth noting that there isnt a exit issue, this is because `)OFF` (the comm
 
 ### But wait you didnt explain the huge long function. Well now that you have asked...
 
+*Note, I have made the var names easier to distinguish going down*
+
 Before in this we simplyed the long line into a basic compenent:
 
 `((X[1]=+⌿E[7]=(⍳J)∘.|⍳J)/⍳J←I)`
@@ -177,5 +179,89 @@ We can do this on a array/vector of numbers. So a better way to explain this fun
 1 2 0 1 2 0 1 2 0 1
 ```
 
-=== To be finished ===
+Then we can use `∘.` to try this for more than one number at once.
+
+```
+   3 4 5∘.|1 2 3 4 5 6 7 8 9 10      
+1 2 0 1 2 0 1 2 0 1
+1 2 3 0 1 2 3 0 1 2
+1 2 3 4 0 1 2 3 4 0
+```
+
+If this does not make sence (don't worry it made no sence to me) I would annotate it like this:
+
+
+```
+   3 4 5∘.|1 2 3 4 5 6 7 8 9 10 
+
+    1 2 3 4 5 6 7 8 9 10     
+ %---------------------- 
+3|  1 2 0 1 2 0 1 2 0 1
+4|  1 2 3 0 1 2 3 0 1 2
+5|  1 2 3 4 0 1 2 3 4 0
+```
+
+So we can use this trick to look for primes now:
+
+```
+   X ←10
+   ⍳X
+1 2 3 4 5 6 7 8 9 10
+   (⍳X)∘.|⍳X
+0 0 0 0 0 0 0 0 0 0
+1 0 1 0 1 0 1 0 1 0
+1 2 0 1 2 0 1 2 0 1
+1 2 3 0 1 2 3 0 1 2
+1 2 3 4 0 1 2 3 4 0
+1 2 3 4 5 0 1 2 3 4
+1 2 3 4 5 6 0 1 2 3
+1 2 3 4 5 6 7 0 1 2
+1 2 3 4 5 6 7 8 0 1
+1 2 3 4 5 6 7 8 9 0
+```
+
+Here we now have a bunch of remainders.
+
+Because we only care about 0 and 1 remainders in this case, I will be adding `0=` to the beggining.
+
+```
+   0=(⍳X)∘.|⍳X      
+1 1 1 1 1 1 1 1 1 1
+0 1 0 1 0 1 0 1 0 1
+0 0 1 0 0 1 0 0 1 0
+0 0 0 1 0 0 0 1 0 0
+0 0 0 0 1 0 0 0 0 1
+0 0 0 0 0 1 0 0 0 0
+0 0 0 0 0 0 1 0 0 0
+0 0 0 0 0 0 0 1 0 0
+0 0 0 0 0 0 0 0 1 0
+0 0 0 0 0 0 0 0 0 1
+```
+
+Now adding `+⌿` to the beggining means that we will add everything in the 2D array upwards.
+
+```
+   +⌿0=(⍳X)∘.|⍳X
+1 2 2 3 2 4 2 4 3 4
+```
+
+(Observe that the first number is 1 because all but one row is 1 in that col).
+
+Now we can finally spot what we are looking for. We are only looking for where the results are 2
+
+```
+   2=+⌿0=(⍳X)∘.|⍳X
+0 1 1 0 1 0 1 0 0 0
+```
+
+Then we compress the array down:
+
+```
+   (2=+⌿0=(⍳X)∘.|⍳X)/⍳X
+2 3 5 7
+```
+
+Oh look. Prime numbers!
+
+The downside of this way is that its really really slow. But then again, this wasnt a speed showdown.
 
