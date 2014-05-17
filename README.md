@@ -139,3 +139,11 @@ or if it isnt because it is a multiplication by 1 it becomes:
    0↓T[E⌈X]
 not prime
 ```
+
+Then we end the function using `∇`.
+
+All of that function was stored in `K`.
+So then we just call K. Then all of the code we have written above runs.
+
+It's worth noting that there isnt a exit issue, this is because `)OFF` (the command to exit) as not working in my tests, So I left it out since the rules didnt say it has to exit.
+
