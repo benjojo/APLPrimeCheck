@@ -104,3 +104,38 @@ The `~` function inverts. so 0 becomes 1.
 
 We can now simply put this as `[1^1]`, Unsuprisingly this is 1.
 
+### To print Prime or not to.
+
+To pick if we sould print `prime` or `not prime` is handled by `(E[1]×l)↓T[E⌈X]`
+
+We have already gone though what T[E⌈X] does.
+
+```
+   T[E⌈X]
+not prime
+```
+
+the `↓` function will take one off the front, for example.
+
+```
+   1↓T[E⌈X]
+ot prime
+```
+
+In this, the amount to chop off the front is dependant on what `(E[1]×l)` returnes.
+
+We can simpily this to `4×l`. We can already look at see that `l` is the output (1 or 0).
+
+If it is 1 then that is multiplied by 4 and thus becomes 4.
+
+```
+   4↓T[E⌈X]
+prime
+```
+
+or if it isnt because it is a multiplication by 1 it becomes:
+
+```
+   0↓T[E⌈X]
+not prime
+```
